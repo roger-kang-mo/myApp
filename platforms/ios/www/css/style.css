@@ -1,0 +1,193 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display:inline-block;
+  overflow: hidden;
+}
+.pictainer {
+  width: 33%;
+  height: 15%;
+  display:inline-block;
+  position: relative;
+}
+
+.picture {
+  /*width: 33%;*/
+  /*height: 33%;*/
+  width: 100%;
+  height: 25%;
+}
+
+.hidden {
+  display:none;
+}
+
+.comment-wrapper {
+  position: absolute;
+  background-color: #333;
+  opacity: 0.9;
+  overflow:hidden;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  /*top: 0;*/
+  /*left: 0;*/
+}
+
+.comment {
+  padding:20%;
+  height: 100%;
+  width: 100%;
+  z-index: 1001;
+  font-size: 16px;
+}
+
+.col.pic-col {
+  padding:0;
+  margin: 0;
+}
+
+#add_experience {
+  width: 100%;
+}
+
+.modal {
+  width: 90%;
+  height: 65%;
+  margin: 5%;
+  padding: 0;
+  position: absolute;
+  /*top: 0;*/
+  left: 0;
+}
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body{
+  font-family: 'Lato', sans-serif;
+  background-color: rgba(51,51,51,.9);
+  width:100%;
+}
+
+h1{
+
+}
+
+h2{
+text-align: center;
+width:100%;
+margin: 60px auto auto auto;
+font-weight:300;
+font-size: 36px;
+font-color: #666666;
+line-height: 123%;
+padding-bottom: 32px;
+
+}
+
+h3{
+  text-align: center;
+  width:100%;
+  margin: 255px auto !important;
+  font-size: 48px;
+  color: #666666;
+  line-height: 119%;
+}
+
+#modal-container{
+  background-color:#F4F4F4;
+  height:953px;
+  width:700px;
+  display: block;
+  margin: auto auto;
+  border-radius: 8px;
+  padding-top: 49px;
+
+}
+
+#photo-btn{
+  height:346px;
+  width:386px;
+  margin:  auto auto;
+  display:block;
+  background-color: #D8D8D8;
+  border-radius: 7px;
+  border: solid 1px #979797;
+  background-image: url(../img/camera.png);
+  background-repeat: no-repeat;
+  background-position:top 44px center; 
+
+}
+
+/*#rating-container{
+  height:56px;
+  width:340px;
+  display:block;
+  margin:  auto auto;
+}*/
+
+#rating{
+  height:56px;
+  width:320px;
+  display:block;
+  /*background-color: green;*/
+  /*border:solid 1px red;*/
+  margin: auto auto;
+}
+
+textarea{
+  clear:left;
+  width:490px;
+  height: 88px;
+  background-color: #F9F9F9;
+  border: solid 1px #979797; 
+  display:block;
+  margin: 68px auto 76px auto;
+  color:#666666;
+}
+
+button#submit_pic {
+  font-weight: 700;
+  font-size: 24px;
+  background-color: #349F8D;
+  line-height: 121%;
+  height:88px;
+  width:360px;
+  border-radius:40px;
+  border-color: transparent;
+  margin:auto auto;
+  font-family: lato;
+  text-transform: capitalize;
+  color:#ffffff;
+  margin: auto auto;
+}
+
+button#submit_pic:hover {
+  background-color: #287A6D;
+}
+
+.rating {
+  cursor: pointer;
+  color: #D8D8D8;
+  text-shadow: -1px 0 #979797, 0 1px #979797, 1px 0 #979797, 0 -1px #979797;
+  font-size: 56px;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   color: #349F8D;
+   content: "\2605";
+   position: absolute;
+}
