@@ -93,6 +93,11 @@ angular.module('starter', ['ionic'])
     picIn = Math.floor(Math.random()*$scope.pics.length);
     picSpot = Math.floor(Math.random()*9);
 
+    if($scope.picAdded){
+      picIn = $scope.pics.length - 1;
+      picSpot = 4
+    }
+
     elem = "#img" + picSpot;
     $(elem).siblings('.hiding-wrapper').fadeIn();
 
@@ -107,13 +112,14 @@ angular.module('starter', ['ionic'])
 
       $scope.$apply();
 
-      $scope.rotatePics();
-
       setTimeout(function(){
         $scope.fadingIn[0].fadeOut();
         $scope.fadingIn = $scope.fadingIn.splice(1);
       }, 400);
-    }, 300);
+    }, 200);
+
+    $scope.picAdded = false;
+    $scope.rotatePics();
   }
 
   $scope.setupPics = function(){
@@ -175,7 +181,9 @@ angular.module('starter', ['ionic'])
   $scope.submitPic = function(){
     $scope.closeModal();
     $scope.pics.push({ name: $scope.data.name, url: "img/zak.png", comment: $scope.data.comment });
-    $scope.showing[4] = $scope.pics[$scope.pics.length];
+    $scope.picAdded = true;
+    // $scope.showing[4] = $scope.pics[$scope.pics.length];
+    // $scope.rotatePic($scope.pics.length - 1);
     $scope.resetData();
   }
 
@@ -187,29 +195,29 @@ angular.module('starter', ['ionic'])
     return $scope.data.rating > num;
   }
 
-  $scope.changePicture = function(event) {
-    event.preventDefault();
-    if (!navigator.camera) {
-        alert("Camera API not supported", "Error");
-        return;
-    }
-    var options =   {   quality: 50,
-                        destinationType: Camera.DestinationType.DATA_URL,
-                        sourceType: 1,  // 0:Photo Library, 1=Camera, 2=Saved Album
-                        encodingType: 0 // 0=JPG 1=PNG
-                    };
+  // $scope.changePicture = function(event) {
+  //   event.preventDefault();
+  //   if (!navigator.camera) {
+  //       alert("Camera API not supported", "Error");
+  //       return;
+  //   }
+  //   var options =   {   quality: 50,
+  //                       destinationType: Camera.DestinationType.DATA_URL,
+  //                       sourceType: 1,  // 0:Photo Library, 1=Camera, 2=Saved Album
+  //                       encodingType: 0 // 0=JPG 1=PNG
+  //                   };
 
-    navigator.camera.getPicture(
-        function(imgData) {
-            $('.media-object', this.$el).attr('src', "data:image/jpeg;base64,"+imgData);
-        },
-        function() {
-            alert('Error taking picture', 'Error');
-        },
-        options);
+  //   navigator.camera.getPicture(
+  //       function(imgData) {
+  //           $('.media-object', this.$el).attr('src', "data:image/jpeg;base64,"+imgData);
+  //       },
+  //       function() {
+  //           alert('Error taking picture', 'Error');
+  //       },
+  //       options);
 
-    return false;
-  };
+  //   return false;
+  // };
 
   // $scope.getPhoto = function() {
   //   Camera.getPicture().then(function(imageURI) {
