@@ -3,13 +3,13 @@
 
 <div id="modal-container">
 
-	<!-- <div id="photo-btn">
+	<div id="photo-btn">
 		<h3>Take a picture</h3>
-	</div> -->
+	</div>
 
-	<video id="video" width="640" height="480" autoplay></video>
-	<button id="snap">Snap Photo</button>
-	<canvas id="canvas" width="640" height="480"></canvas>
+	<!-- <video id="video" width="640" height="480" autoplay></video> -->
+	<!-- <button id="snap">Snap Photo</button> -->
+	<!-- <canvas id="canvas" width="640" height="480"></canvas> -->
 
 
 	<h2>Rate your visit</h2>
@@ -25,15 +25,15 @@
 	</div>
 
 	<div class="row">
-		<input type="text" placeholder="Name">
+		<input type="text" placeholder="Name" ng-model="data.name">
 	</div>
 
 	<div class="row">
-		<textarea placeholder="tell us about your visit"/>
+		<textarea placeholder="tell us about your visit" ng-model="data.comment" />
 	</div>
 
 	<div class="row">
-			<button id="submit_pic">submit</button>
+		<button id="submit_pic">submit</button>
 	</div>
 
 </div>

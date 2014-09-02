@@ -1,3 +1,7 @@
+$(document).ready(function(){
+  $('.comment-wrapper').hide()
+});
+
 angular.module('starter', ['ionic'])
 
 .run(function($ionicPlatform) {
@@ -16,19 +20,36 @@ angular.module('starter', ['ionic'])
 .controller('MainCtrl', function($scope, $ionicModal, Camera) {
 
   init = function(){
+    $scope.fadingIn = [];
+    $scope.showing = [];
+    $scope.pics = [
+      { name: 'Allison Fox', url: 'img/allisonfox.png', comment: "Another call with @onemedical, another 'wow' experience. Can't recommend these guys highly enough for anyone looking for a new doctor."},
+      { name: 'Andrew Feda', url: 'img/andrewfeda.png', comment: "One Medical is absolutely FANTASTIC. I’m so happy to find a service like this—it’s about time!"},
+      { name: 'Carrie Bowler', url: 'img/carriebowler.png', comment: "Ubered to my appointment and doctor saw me right away...@onemedical is the Uber of healthcare!"},
+      { name: 'Elizabeth Haskins', url: 'img/elizabethhaskins.png', comment: "This appointment at @onemedical was the best doctor's experience of my life. So calm and non-stressful."},
+      { name: 'Evelyn Chu', url: 'img/evelynchu.png', comment: 'I am so happy to have found One Medical. It is a refreshing experience to see practitioners who really listen.'},
+      { name: 'Honore Lansen', url: 'img/honorelansen.png', comment: "It was a huge relief to me to be able to get a same-day appointment (within the hour, even)."},
+      { name: 'Karis Cho', url: 'img/karischo.png', comment: "I haven't been to a primary care dr in about 7 yrs-went to @onemedical for a physical and can't say enough great things. Switch now."},
+      { name: 'Laura Guderian', url: 'img/lauraguderian.png', comment: "One Medical is everything a doctor's office should be."},
+      { name: 'Manisha Patel', url: 'img/manishapatel.png', comment: "Holy crap, @onemedical is fantastic."},
+      { name: 'Rachana Jani', url: 'img/rachanajani.png', comment: "I am in love with @onemedical. They’re the absolute best."},
+      { name: 'Robert Wilson', url: 'img/robertwilson.png', comment: "Just got my annual physical at my local @onemedical office. Booked my appt on line. On time. In. Out. Fast. Easy. That's how it should be!"},
+      { name: 'Ronald Engblert', url: 'img/ronaldengblert.png', comment: "Loving One Medical. Staff is super nice, friendly, professional & even happy. It's nice now, going to the doctor. Thanks @onemedical ."},
+      { name: 'Stephen Clark', url: 'img/stephenclark.png', comment: "Just had my first appointment with @onemedical wildly impressed. Everything I was hoping for."},
+      { name: 'Thomas Feely', url: 'img/thomasfeely.png', comment: "@onemedical, you've spoiled me! I now struggle with 'normal wait times' at other appointments. Everyone should operate on"},
+      { name: 'Zarina Pino', url: 'img/zarinapino.png', comment: "@onemedical is the best. Prescriptions and appts the day of, by app! #soworththemoney"},
+    ];
+
+    $scope.setupPics();
+
+    $scope.inTransition = []
     $scope.hasPermission = false
 
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
 
     $scope.resetData();
-    // $scope.container = jQuery('.container')
-    // $scope.container.isotope({
-    //   itemSelector : '.picture',
-    //   layoutMode: 'fitRows'
-    // });
     $ionicModal.fromTemplateUrl('modal.html', {
       scope: $scope,
-      // animation: 'slide-in-up'
       animation: 'nav-title-slide-ios7'
     }).then(function(modal) {
       $scope.modal = modal;
@@ -37,14 +58,14 @@ angular.module('starter', ['ionic'])
     jQuery('.picture').click(function(e){
       targetElement = jQuery(e.target);
 
-      // if(!targetElement.hasClass('.pictainer')){
-        // targetElement = targetElement.parents('.pictainer');
-      // }
-
-      // targetElement.next('.comment-wrapper').removeClass('hidden').addClass('poop');
-      // setTimeout(function(targetElement) {
-      //   jQuery('.comment-wrapper.poop').fadeOut();
-      // }, 5000);
+      // targetElement.next('.comment-wrapper').removeClass('hidden')
+      targetElement.next('.comment-wrapper').fadeIn();
+      $scope.inTransition.push(targetElement.next('.comment-wrapper'));
+      setTimeout(function(targetElement) {
+        // num = "shown" + $scope.transitionCount;
+        $scope.inTransition[0].fadeOut();
+        $scope.inTransition = $scope.inTransition.splice(1);
+      }, 5000);
     });
 
     jQuery('body').on('click', '#submit_pic', function(){
@@ -59,47 +80,77 @@ angular.module('starter', ['ionic'])
       $scope.changePicture(event);
     });
 
+    $scope.rotatePics();
+  }
 
-    //   filter: '*',
-    //   animationOptions: {
-    //     duration: 750,
-    //     easing: 'linear',
-    //     queue: false
-    //   }
-    // });
+  $scope.rotatePics = function(){
+    setTimeout(function(){
+      $scope.rotatePic();
+    }, 5000);
+  }
+
+  $scope.rotatePic = function(){
+    picIn = Math.floor(Math.random()*$scope.pics.length);
+    picSpot = Math.floor(Math.random()*9);
+
+    elem = "#img" + picSpot;
+    $(elem).siblings('.hiding-wrapper').fadeIn();
+
+    $scope.picSpot = picIn;
+    $scope.picSpot = picSpot;
+
+    setTimeout(function(){
+      elem = "#img" + $scope.picSpot;
+      $scope.showing[picSpot] = $scope.pics[picIn];
+      
+      $scope.fadingIn.push($(elem).siblings('.hiding-wrapper'));
+
+      $scope.$apply();
+
+      $scope.rotatePics();
+
+      setTimeout(function(){
+        $scope.fadingIn[0].fadeOut();
+        $scope.fadingIn = $scope.fadingIn.splice(1);
+      }, 400);
+    }, 300);
+  }
+
+  $scope.setupPics = function(){
+    for(i = 0; i < 9; i++){
+      $scope.showing.push($scope.pics[i]);
+    }
   }
 
   $scope.initCamera = function(){
     console.log("Cam's ready");
-    window.addEventListener("DOMContentLoaded", function() {
-      // Grab elements, create settings, etc.
-      var canvas = document.getElementById("canvas"),
-        context = canvas.getContext("2d"),
-        video = document.getElementById("video"),
-        videoObj = { "video": true },
-        errBack = function(error) {
-          console.log("Video capture error: ", error.code); 
-        };
+    // Grab elements, create settings, etc.
+    var canvas = document.getElementById("canvas"),
+      context = canvas.getContext("2d"),
+      video = document.getElementById("video"),
+      videoObj = { "video": true },
+      errBack = function(error) {
+        console.log("Video capture error: ", error.code); 
+      };
 
-      // Put video listeners into place
-      if(navigator.getUserMedia) { // Standard
-        navigator.getUserMedia(videoObj, function(stream) {
-          video.src = stream;
-          video.play();
-        }, errBack);
-      } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
-        navigator.webkitGetUserMedia(videoObj, function(stream){
-          video.src = window.webkitURL.createObjectURL(stream);
-          video.play();
-        }, errBack);
-      }
-      else if(navigator.mozGetUserMedia) { // Firefox-prefixed
-        navigator.mozGetUserMedia(videoObj, function(stream){
-          video.src = window.URL.createObjectURL(stream);
-          video.play();
-        }, errBack);
-      }
-    }, false);
+    // Put video listeners into place
+    if(navigator.getUserMedia) { // Standard
+      navigator.getUserMedia(videoObj, function(stream) {
+        video.src = stream;
+        video.play();
+      }, errBack);
+    } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+      navigator.webkitGetUserMedia(videoObj, function(stream){
+        video.src = window.webkitURL.createObjectURL(stream);
+        video.play();
+      }, errBack);
+    }
+    else if(navigator.mozGetUserMedia) { // Firefox-prefixed
+      navigator.mozGetUserMedia(videoObj, function(stream){
+        video.src = window.URL.createObjectURL(stream);
+        video.play();
+      }, errBack);
+    }
   }
 
   $scope.resetData = function(){
@@ -123,6 +174,8 @@ angular.module('starter', ['ionic'])
 
   $scope.submitPic = function(){
     $scope.closeModal();
+    $scope.pics.push({ name: $scope.data.name, url: "img/zak.png", comment: $scope.data.comment });
+    $scope.showing[4] = $scope.pics[$scope.pics.length];
     $scope.resetData();
   }
 
@@ -140,7 +193,6 @@ angular.module('starter', ['ionic'])
         alert("Camera API not supported", "Error");
         return;
     }
-    console.log("HELLO BUTT");
     var options =   {   quality: 50,
                         destinationType: Camera.DestinationType.DATA_URL,
                         sourceType: 1,  // 0:Photo Library, 1=Camera, 2=Saved Album

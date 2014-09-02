@@ -37,8 +37,21 @@
   /*left: 0;*/
 }
 
+.hiding-wrapper {
+  display:none;
+  position: absolute;
+  background-color: #287A6D;
+  overflow:hidden;
+  width: 253px;
+  height: 252px;
+  opacity: 1;
+  margin-top: -257px;
+  z-index: 1003;
+}
+
 .comment {
   padding:5%;
+  line-height:22px;
   height: 100%;
   width: 100%;
   z-index: 1001;
