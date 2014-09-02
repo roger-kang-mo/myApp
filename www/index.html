@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,100italic,300italic,400italic' rel='stylesheet' type='text/css'>
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -29,24 +30,27 @@
         <h1 class="title">OMG</h1>
       </ion-header-bar>
       <ion-content ng-controller="MainCtrl">
-        <div class="container">
+        <div class="container" id="picture_container">
           <div class="row">
             <div class="col pic-col">
               <img src="img/bbq.png" alt="" class="picture">
-              <div class="hidden comment-wrapper">
+              <div class="comment-wrapper">
                 <span class="comment">OMG I LOVE OMG LOL</span>
+                <span class="comment-author">Danielle Elliot - San Francisco</span>
               </div>
             </div>
             <div class="col pic-col">
               <img src="img/bbq.png" alt="" class="picture">
               <div class="hidden comment-wrapper">
                 <span class="comment">OMG I LOVE OMG LOL</span>
+                <span class="comment-author">Danielle Elliot - San Francisco</span>
               </div>
             </div>
             <div class="col pic-col">
               <img src="img/bbq.png" alt="" class="picture">
               <div class="hidden comment-wrapper">
                 <span class="comment">OMG I LOVE OMG LOL</span>
+                <span class="comment-author">Danielle Elliot - San Francisco</span>
               </div>
             </div>
           </div>
@@ -55,18 +59,21 @@
               <img src="img/bbq.png" alt="" class="picture">
               <div class="hidden comment-wrapper">
                 <span class="comment">OMG I LOVE OMG LOL</span>
+                <span class="comment-author">Danielle Elliot - San Francisco</span>
               </div>
             </div>
             <div class="col pic-col">
               <img src="img/bbq.png" alt="" class="picture">
               <div class="hidden comment-wrapper">
                 <span class="comment">OMG I LOVE OMG LOL</span>
+                <span class="comment-author">Danielle Elliot - San Francisco</span>
               </div>
             </div>
             <div class="col pic-col">
               <img src="img/bbq.png" alt="" class="picture">
               <div class="hidden comment-wrapper">
                 <span class="comment">OMG I LOVE OMG LOL</span>
+                <span class="comment-author">Danielle Elliot - San Francisco</span>
               </div>
             </div>
           </div>
@@ -75,18 +82,21 @@
               <img src="img/bbq.png" alt="" class="picture">
               <div class="hidden comment-wrapper">
                 <span class="comment">OMG I LOVE OMG LOL</span>
+                <span class="comment-author">Danielle Elliot - San Francisco</span>
               </div>
             </div>
             <div class="col pic-col">
               <img src="img/bbq.png" alt="" class="picture">
               <div class="hidden comment-wrapper">
                 <span class="comment">OMG I LOVE OMG LOL</span>
+                <span class="comment-author">Danielle Elliot - San Francisco</span>
               </div>
             </div>
             <div class="col pic-col">
               <img src="img/bbq.png" alt="" class="picture">
               <div class="hidden comment-wrapper">
                 <span class="comment">OMG I LOVE OMG LOL</span>
+                <span class="comment-author">Danielle Elliot - San Francisco</span>
               </div>
             </div>
           </div>
@@ -100,7 +110,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <button class="button button-balanced" id="add_experience" ng-click="showModal()">Take a pic</button>
+            <button id="add_experience" ng-click="showModal()">Add Your Experience</button>
           </div>
         </div>
       </ion-content>

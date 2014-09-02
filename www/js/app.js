@@ -1,8 +1,3 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic'])
 
 .run(function($ionicPlatform) {
@@ -18,9 +13,12 @@ angular.module('starter', ['ionic'])
   });
 })
 // .controller('MainCtrl', function($scope, Camera) {
-.controller('MainCtrl', function($scope, $ionicModal) {
+.controller('MainCtrl', function($scope, $ionicModal, Camera) {
 
   init = function(){
+    $scope.hasPermission = false
+
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
 
     $scope.resetData();
     // $scope.container = jQuery('.container')
@@ -36,14 +34,14 @@ angular.module('starter', ['ionic'])
       $scope.modal = modal;
     });
 
-    jQuery('.pictainer').click(function(e){
+    jQuery('.picture').click(function(e){
       targetElement = jQuery(e.target);
 
-      if(!targetElement.hasClass('.pictainer')){
-        targetElement = targetElement.parents('.pictainer');
-      }
+      // if(!targetElement.hasClass('.pictainer')){
+        // targetElement = targetElement.parents('.pictainer');
+      // }
 
-      targetElement.find('.comment-wrapper').removeClass('hidden').addClass('poop');
+      // targetElement.next('.comment-wrapper').removeClass('hidden').addClass('poop');
       // setTimeout(function(targetElement) {
       //   jQuery('.comment-wrapper.poop').fadeOut();
       // }, 5000);
@@ -57,6 +55,10 @@ angular.module('starter', ['ionic'])
       $scope.setRating(jQuery(e.target).data('value'));
     })
 
+    jQuery('body').on('click', '#photo-btn', function(event){
+      $scope.changePicture(event);
+    });
+
 
     //   filter: '*',
     //   animationOptions: {
@@ -65,6 +67,39 @@ angular.module('starter', ['ionic'])
     //     queue: false
     //   }
     // });
+  }
+
+  $scope.initCamera = function(){
+    console.log("Cam's ready");
+    window.addEventListener("DOMContentLoaded", function() {
+      // Grab elements, create settings, etc.
+      var canvas = document.getElementById("canvas"),
+        context = canvas.getContext("2d"),
+        video = document.getElementById("video"),
+        videoObj = { "video": true },
+        errBack = function(error) {
+          console.log("Video capture error: ", error.code); 
+        };
+
+      // Put video listeners into place
+      if(navigator.getUserMedia) { // Standard
+        navigator.getUserMedia(videoObj, function(stream) {
+          video.src = stream;
+          video.play();
+        }, errBack);
+      } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+        navigator.webkitGetUserMedia(videoObj, function(stream){
+          video.src = window.webkitURL.createObjectURL(stream);
+          video.play();
+        }, errBack);
+      }
+      else if(navigator.mozGetUserMedia) { // Firefox-prefixed
+        navigator.mozGetUserMedia(videoObj, function(stream){
+          video.src = window.URL.createObjectURL(stream);
+          video.play();
+        }, errBack);
+      }
+    }, false);
   }
 
   $scope.resetData = function(){
@@ -77,6 +112,10 @@ angular.module('starter', ['ionic'])
 
   $scope.showModal = function(){
     $scope.modal.show();
+    // COMMENT FOR DEV
+    if (navigator.getUserMedia && !$scope.hasPermission) {
+        navigator.getUserMedia({video: true}, $scope.initCamera, function(){console.log("ohshit2");});
+    }
   }
   $scope.closeModal = function(){
     $scope.modal.hide();
@@ -90,6 +129,35 @@ angular.module('starter', ['ionic'])
   $scope.setRating = function(rating){
     $scope.data.rating = rating;
   }
+
+  $scope.starRated = function(num) {
+    return $scope.data.rating > num;
+  }
+
+  $scope.changePicture = function(event) {
+    event.preventDefault();
+    if (!navigator.camera) {
+        alert("Camera API not supported", "Error");
+        return;
+    }
+    console.log("HELLO BUTT");
+    var options =   {   quality: 50,
+                        destinationType: Camera.DestinationType.DATA_URL,
+                        sourceType: 1,  // 0:Photo Library, 1=Camera, 2=Saved Album
+                        encodingType: 0 // 0=JPG 1=PNG
+                    };
+
+    navigator.camera.getPicture(
+        function(imgData) {
+            $('.media-object', this.$el).attr('src', "data:image/jpeg;base64,"+imgData);
+        },
+        function() {
+            alert('Error taking picture', 'Error');
+        },
+        options);
+
+    return false;
+  };
 
   // $scope.getPhoto = function() {
   //   Camera.getPicture().then(function(imageURI) {
@@ -106,3 +174,20 @@ angular.module('starter', ['ionic'])
   // };
   init();
 })
+.factory('Camera', ['$q', function($q) {
+
+  return {
+    getPicture: function(options) {
+      var q = $q.defer();
+
+      navigator.camera.getPicture(function(result) {
+        // Do any magic you need
+        q.resolve(result);
+      }, function(err) {
+        q.reject(err);
+      }, options);
+
+      return q.promise;
+    }
+  }
+}]);

@@ -16,6 +16,7 @@
   /*height: 33%;*/
   width: 100%;
   height: 25%;
+  border: 1px solid #f9f9f9;
 }
 
 .hidden {
@@ -27,19 +28,35 @@
   background-color: #333;
   opacity: 0.9;
   overflow:hidden;
-  width: 100%;
-  height: 100%;
+  width: 253px;
+  height: 252px;
+  margin-top: -257px;
   z-index: 1000;
+  border: 1px solid #f9f9f9;
   /*top: 0;*/
   /*left: 0;*/
 }
 
 .comment {
-  padding:20%;
+  padding:5%;
   height: 100%;
   width: 100%;
   z-index: 1001;
-  font-size: 16px;
+  font-size: 24px;
+  color: #D8D8D8;
+
+  position: absolute;
+  top:10px;
+  font-weight: 400;
+}
+
+.comment-author {
+  color: #c4e2a2;
+  font-size: 14px;
+  position: absolute;
+  top:200px;
+  left: 10px;
+  z-index: 1001;
 }
 
 .col.pic-col {
@@ -134,7 +151,7 @@ h3{
 
 #rating{
   height:56px;
-  width:320px;
+  width:340px;
   display:block;
   /*background-color: green;*/
   /*border:solid 1px red;*/
@@ -148,11 +165,25 @@ textarea{
   background-color: #F9F9F9;
   border: solid 1px #979797; 
   display:block;
-  margin: 68px auto 76px auto;
+  padding: 5px;
+  margin: 0px auto 76px auto;
   color:#666666;
 }
 
-button#submit_pic {
+input[type="text"] {
+  clear:left;
+  width:400px;
+  height: 35px;
+  background-color: #F9F9F9;
+  border: solid 1px #979797; 
+  display:block;
+  padding: 5px;
+  margin: 22px auto 22px auto;
+  color:#666666;
+  /*margin-top: 44px;*/
+}
+
+button {
   font-weight: 700;
   font-size: 24px;
   background-color: #349F8D;
@@ -168,11 +199,20 @@ button#submit_pic {
   margin: auto auto;
 }
 
-button#submit_pic:hover {
+button#submit_button {
+
+}
+
+button {
   background-color: #287A6D;
 }
 
 .rating {
+  height:56px;
+  width:340px;
+  display:block;
+  margin: auto auto;
+
   cursor: pointer;
   color: #D8D8D8;
   text-shadow: -1px 0 #979797, 0 1px #979797, 1px 0 #979797, 0 -1px #979797;
@@ -183,11 +223,24 @@ button#submit_pic:hover {
 .rating > span {
   display: inline-block;
   position: relative;
-  width: 1.1em;
+  width: 1em;
 }
 .rating > span:hover:before,
 .rating > span:hover ~ span:before {
+/*.rating > span.highlight ~ span.highlight:before,*/
+/*.rating > span.highlight:before {*/
    color: #349F8D;
    content: "\2605";
    position: absolute;
+}
+
+/*
+.highlight {
+  color: #349F8D !important;
+  content: "\2605" !important;
+  position: absolute !important;
+}*/
+
+div#picture_container .row + .row {
+  margin-top: -10px;
 }
