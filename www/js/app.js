@@ -31,13 +31,19 @@ angular.module('starter', ['ionic'])
       { name: 'Honore Lansen', url: 'img/honorelansen.png', comment: "It was a huge relief to me to be able to get a same-day appointment (within the hour, even)."},
       { name: 'Karis Cho', url: 'img/karischo.png', comment: "I haven't been to a primary care dr in about 7 yrs-went to @onemedical for a physical and can't say enough great things. Switch now."},
       { name: 'Laura Guderian', url: 'img/lauraguderian.png', comment: "One Medical is everything a doctor's office should be."},
-      { name: 'Manisha Patel', url: 'img/manishapatel.png', comment: "Holy crap, @onemedical is fantastic."},
-      { name: 'Rachana Jani', url: 'img/rachanajani.png', comment: "I am in love with @onemedical. They’re the absolute best."},
-      { name: 'Robert Wilson', url: 'img/robertwilson.png', comment: "Just got my annual physical at my local @onemedical office. Booked my appt on line. On time. In. Out. Fast. Easy. That's how it should be!"},
-      { name: 'Ronald Engblert', url: 'img/ronaldengblert.png', comment: "Loving One Medical. Staff is super nice, friendly, professional & even happy. It's nice now, going to the doctor. Thanks @onemedical ."},
-      { name: 'Stephen Clark', url: 'img/stephenclark.png', comment: "Just had my first appointment with @onemedical wildly impressed. Everything I was hoping for."},
-      { name: 'Thomas Feely', url: 'img/thomasfeely.png', comment: "@onemedical, you've spoiled me! I now struggle with 'normal wait times' at other appointments. Everyone should operate on"},
-      { name: 'Zarina Pino', url: 'img/zarinapino.png', comment: "@onemedical is the best. Prescriptions and appts the day of, by app! #soworththemoney"},
+      { name: 'Manisha Patel', url: 'img/manishapatel.png', comment: "Holy crap, @onemedical is fantastic."}
+      // { name: 'Rachana Jani', url: 'img/rachanajani.png', comment: "I am in love with @onemedical. They’re the absolute best."},
+      // { name: 'Robert Wilson', url: 'img/robertwilson.png', comment: "Just got my annual physical at my local @onemedical office. Booked my appt on line. On time. In. Out. Fast. Easy. That's how it should be!"},
+      // { name: 'Ronald Engblert', url: 'img/ronaldengblert.png', comment: "Loving One Medical. Staff is super nice, friendly, professional & even happy. It's nice now, going to the doctor. Thanks @onemedical ."},
+      // { name: 'Stephen Clark', url: 'img/stephenclark.png', comment: "Just had my first appointment with @onemedical wildly impressed. Everything I was hoping for."},
+      // { name: 'Thomas Feely', url: 'img/thomasfeely.png', comment: "@onemedical, you've spoiled me! I now struggle with 'normal wait times' at other appointments. Everyone should operate on"},
+      // { name: 'Zarina Pino', url: 'img/zarinapino.png', comment: "@onemedical is the best. Prescriptions and appts the day of, by app! #soworththemoney"},
+      // { name: 'Amy Stulman', url: 'img/amystulman.png', comment: "@onemedical, you've spoiled me! I now struggle with 'normal wait times' at other appointments. Everyone should operate on #OneMedicalTime"},
+      // { name: 'Daniel Garfinkel', url: 'img/danielgarfinkel.png', comment: "If you're in Boston you should really consider switching over to @onemedical for your #health needs. No headaches and crazy wait periods."},
+      // { name: 'John Snyder', url: 'img/johnsnyder.png', comment: "@onemedical is THE BEST healthcare provider."},
+      // { name: 'Sarah Lewis', url: 'img/sarahlewis.png', comment: "Impressed with @onemedical - online appointments, can email my doctor, test results emailed. Thank you."},
+      // { name: 'Tom X. Lee', url: 'img/tomlee.png', comment: "Enjoyed primary care today @onemedical (and a cold drink). Thx for seeing us as customers, not just patients."},
+      // { name: 'Veena Chawla', url: 'img/veenachawla.png', comment: "IMHO, once you've experienced service like @onemedical (similar to @zappos) v hard to go back to mediocre alternative"}
     ];
 
     $scope.setupPics();
@@ -77,7 +83,8 @@ angular.module('starter', ['ionic'])
     })
 
     jQuery('body').on('click', '#photo-btn', function(event){
-      $scope.changePicture(event);
+      // $scope.changePicture(event);
+      $('#cameraInput').click();
     });
 
     $scope.rotatePics();
@@ -232,6 +239,8 @@ angular.module('starter', ['ionic'])
   //     saveToPhotoAlbum: false
   //   });
   // };
+
+
   init();
 })
 .factory('Camera', ['$q', function($q) {

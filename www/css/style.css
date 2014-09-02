@@ -4,18 +4,10 @@
   display:inline-block;
   overflow: hidden;
 }
-.pictainer {
-  width: 33%;
-  height: 15%;
-  display:inline-block;
-  position: relative;
-}
 
 .picture {
-  /*width: 33%;*/
-  /*height: 33%;*/
   width: 100%;
-  height: 25%;
+  height:100%;
   border: 1px solid #f9f9f9;
 }
 
@@ -23,30 +15,47 @@
   display:none;
 }
 
+input[type="file"] {
+  /*visibility: hidden;*/
+  /*width:346px;*/
+  /*height:386px;*/
+  /*overflow: hidden;*/
+  /*margin-top:-500px;*/
+  /*z-index: 9999999;*/
+  margin-left: 255px;
+  line-height: 0px;
+  margin-top: 35px;
+}
+
 .comment-wrapper {
   position: absolute;
   background-color: #333;
   opacity: 0.9;
   overflow:hidden;
-  width: 253px;
-  height: 252px;
-  margin-top: -257px;
   z-index: 1000;
+  width:322px;
+  height: 431px;
+  margin-top: -437px;
   border: 1px solid #f9f9f9;
-  /*top: 0;*/
-  /*left: 0;*/
+  line-height: 129%;
+}
+
+#button_wrapper {
+  margin-top: -140px;
+  font-weight: bold;
+  z-index: 1005;
 }
 
 .hiding-wrapper {
-  display:none;
+  display:none; 
   position: absolute;
-  background-color: #287A6D;
+  background-color: #333;
   overflow:hidden;
-  width: 253px;
-  height: 252px;
-  opacity: 1;
-  margin-top: -257px;
-  z-index: 1003;
+  width:322px;
+  height: 431px;
+  opacity: .9;
+  margin-top: -437px;
+  z-index: 99999;
 }
 
 .comment {
@@ -57,17 +66,17 @@
   z-index: 1001;
   font-size: 24px;
   color: #D8D8D8;
-
+  line-height: 129%;
   position: absolute;
   top:10px;
   font-weight: 400;
 }
 
-.comment-author {
+.comment .comment-author {
   color: #c4e2a2;
   font-size: 14px;
-  position: absolute;
-  top:200px;
+  /*position: absolute;*/
+  top:10px;
   left: 10px;
   z-index: 1001;
 }
@@ -78,12 +87,14 @@
 }
 
 #add_experience {
-  width: 100%;
+  width: 380px;
+  height:85px;
+  z-index: 1005;
 }
 
 .modal {
   width: 90%;
-  height: 65%;
+  height: 85%;
   margin: 5%;
   padding: 0;
   position: absolute;
@@ -109,6 +120,10 @@ h1{
 
 }
 
+#rating_header {
+  margin-top: 30px;
+}
+
 h2{
 text-align: center;
 width:100%;
@@ -119,6 +134,10 @@ font-color: #666666;
 line-height: 123%;
 padding-bottom: 32px;
 
+}
+
+.modal-backdrop {
+  background-color: rgba(0,0,20, 0.8) !important;
 }
 
 h3{
@@ -132,7 +151,7 @@ h3{
 
 #modal-container{
   background-color:#F4F4F4;
-  height:953px;
+  height:1020px;
   width:700px;
   display: block;
   margin: 35px auto auto auto;
@@ -179,21 +198,21 @@ textarea{
   border: solid 1px #979797; 
   display:block;
   padding: 5px;
-  margin: 0px auto 76px auto;
+  /*margin: 0px auto 76px auto;*/
+  margin: 0px auto 35px auto;
   color:#666666;
 }
 
 input[type="text"] {
   clear:left;
-  width:400px;
-  height: 35px;
+  width:490px;
+  height: 44px;
   background-color: #F9F9F9;
   border: solid 1px #979797; 
   display:block;
   padding: 5px;
-  margin: 22px auto 22px auto;
+  margin: 56px auto 22px auto;
   color:#666666;
-  /*margin-top: 44px;*/
 }
 
 button {
@@ -210,10 +229,6 @@ button {
   text-transform: capitalize;
   color:#ffffff;
   margin: auto auto;
-}
-
-button#submit_button {
-
 }
 
 button {
