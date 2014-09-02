@@ -71,35 +71,33 @@ angular.module('starter', ['ionic'])
 
   $scope.initCamera = function(){
     console.log("Cam's ready");
-    window.addEventListener("DOMContentLoaded", function() {
-      // Grab elements, create settings, etc.
-      var canvas = document.getElementById("canvas"),
-        context = canvas.getContext("2d"),
-        video = document.getElementById("video"),
-        videoObj = { "video": true },
-        errBack = function(error) {
-          console.log("Video capture error: ", error.code); 
-        };
+    // Grab elements, create settings, etc.
+    var canvas = document.getElementById("canvas"),
+      context = canvas.getContext("2d"),
+      video = document.getElementById("video"),
+      videoObj = { "video": true },
+      errBack = function(error) {
+        console.log("Video capture error: ", error.code); 
+      };
 
-      // Put video listeners into place
-      if(navigator.getUserMedia) { // Standard
-        navigator.getUserMedia(videoObj, function(stream) {
-          video.src = stream;
-          video.play();
-        }, errBack);
-      } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
-        navigator.webkitGetUserMedia(videoObj, function(stream){
-          video.src = window.webkitURL.createObjectURL(stream);
-          video.play();
-        }, errBack);
-      }
-      else if(navigator.mozGetUserMedia) { // Firefox-prefixed
-        navigator.mozGetUserMedia(videoObj, function(stream){
-          video.src = window.URL.createObjectURL(stream);
-          video.play();
-        }, errBack);
-      }
-    }, false);
+    // Put video listeners into place
+    if(navigator.getUserMedia) { // Standard
+      navigator.getUserMedia(videoObj, function(stream) {
+        video.src = stream;
+        video.play();
+      }, errBack);
+    } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+      navigator.webkitGetUserMedia(videoObj, function(stream){
+        video.src = window.webkitURL.createObjectURL(stream);
+        video.play();
+      }, errBack);
+    }
+    else if(navigator.mozGetUserMedia) { // Firefox-prefixed
+      navigator.mozGetUserMedia(videoObj, function(stream){
+        video.src = window.URL.createObjectURL(stream);
+        video.play();
+      }, errBack);
+    }
   }
 
   $scope.resetData = function(){
@@ -140,7 +138,6 @@ angular.module('starter', ['ionic'])
         alert("Camera API not supported", "Error");
         return;
     }
-    console.log("HELLO BUTT");
     var options =   {   quality: 50,
                         destinationType: Camera.DestinationType.DATA_URL,
                         sourceType: 1,  // 0:Photo Library, 1=Camera, 2=Saved Album
