@@ -262,12 +262,12 @@ button {
    position: absolute;
 }
 
-/*
+
 .highlight {
   color: #349F8D !important;
   content: "\2605" !important;
-  position: absolute !important;
-}*/
+  /*position: absolute !important;*/
+}
 
 div#picture_container .row + .row {
   margin-top: -10px;

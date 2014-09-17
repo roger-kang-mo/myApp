@@ -87,13 +87,13 @@ angular.module('starter', ['ionic'])
       $('#cameraInput').click();
     });
 
-    // $scope.rotatePics();
+    $scope.rotatePics();
   }
 
   $scope.rotatePics = function(){
     setTimeout(function(){
       $scope.rotatePic();
-    }, 1000);
+    }, 5000);
   }
 
   $scope.rotatePic = function(){

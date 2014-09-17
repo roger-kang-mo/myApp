@@ -29,9 +29,9 @@
   </head>
   <body ng-app="starter" class="platform-ios platform-cordova platform-webview">
     <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">OMG</h1>
-      </ion-header-bar>
+      <!-- <ion-header-bar class="bar-stable"> -->
+        <!-- <h1 class="title">OMG</h1> -->
+      <!-- </ion-header-bar> -->
       <ion-content ng-controller="MainCtrl">
         <div class="container" id="picture_container">
           <div class="row">
@@ -39,9 +39,8 @@
               <img id="img0" ng-src="{{showing[0].url}}" alt="" class="picture">
               <div class="comment-wrapper">
                 <span class="comment">{{ showing[0].comment }}<div class="comment-author">{{showing[0].name}} - San Francisco</div></span>
-                
               </div>
-              <div class="hiding-wrapper" style="display:inline;"></div>
+              <div class="hiding-wrapper"></div>
             </div>
             <div class="col pic-col">
               <img id="img1" ng-src="{{showing[1].url}}" alt="" class="picture">

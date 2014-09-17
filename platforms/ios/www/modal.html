@@ -5,15 +5,13 @@
 
 	<div id="photo-btn">
 		<h3>Take a picture</h3>
-		<input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput">
 	</div>
 
-	<!-- <video id="video" width="640" height="480" autoplay></video> -->
-	<!-- <button id="snap">Snap Photo</button> -->
-	<!-- <canvas id="canvas" width="640" height="480"></canvas> -->
+	<div class="row">
+		<input type="file" label="Take Picture" capture="camera" accept="img/*" id="cameraInput" name="cameraInput">
+	</div>
 
-
-	<h2>Rate your visit</h2>
+	<h2 id="rating_header">Rate your visit</h2>
 
 	<div class="rating row">
 		<span class="star" ng-hide="starRated(4)" data-value=5>★</span>
