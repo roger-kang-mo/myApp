@@ -95,8 +95,8 @@ angular.module('starter', ['ionic'])
 
         reader.onload = function (e) {
           // $('#uploaded_image').attr('src', e.target.result);
-          // $scope.data.picture = e.target.result;
-          $scope.data.picture = "img/zak.png";
+          $scope.data.picture = e.target.result;
+          // $scope.data.picture = "img/zak.png";
           $scope.$apply();
         }
 
