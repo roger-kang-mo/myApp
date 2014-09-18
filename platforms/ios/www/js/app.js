@@ -84,29 +84,31 @@ angular.module('starter', ['ionic'])
 
     jQuery('body').on('click', '#photo-btn', function(event){
       // $scope.changePicture(event);
-      $('#cameraInput').click();
+      // $('#cameraInput').click();
+      $scope.data.picture = "img/zak.png";
+      $scope.$apply();
     });
 
     // $scope.rotatePics();
 
-    readURL = function(input) {
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
+    // readURL = function(input) {
+    //   if (input.files && input.files[0]) {
+    //     var reader = new FileReader();
 
-        reader.onload = function (e) {
-          // $('#uploaded_image').attr('src', e.target.result);
-          // $scope.data.picture = e.target.result;
-          $scope.data.picture = "img/zak.png";
-          $scope.$apply();
-        }
+    //     reader.onload = function (e) {
+    //       // $('#uploaded_image').attr('src', e.target.result);
+    //       // $scope.data.picture = e.target.result;
+    //       $scope.data.picture = "img/zak.png";
+    //       $scope.$apply();
+    //     }
 
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
+    //     reader.readAsDataURL(input.files[0]);
+    //   }
+    // }
 
-    jQuery('body').on('change', "#cameraInput", function(){
-      readURL(this);
-    });
+    // jQuery('body').on('change', "#cameraInput", function(){
+    //   readURL(this);
+    // });
   }
 
   $scope.rotatePics = function(){
