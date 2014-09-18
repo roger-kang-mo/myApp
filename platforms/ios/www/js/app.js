@@ -89,7 +89,7 @@ angular.module('starter', ['ionic'])
       $scope.$apply();
     });
 
-    // $scope.rotatePics();
+    $scope.rotatePics();
 
     // readURL = function(input) {
     //   if (input.files && input.files[0]) {
