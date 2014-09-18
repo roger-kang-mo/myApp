@@ -3,10 +3,12 @@
 
 <div id="modal-container">
 
-	<div id="photo-btn" class="photo-area">
-		<h3>Take a picture</h3>
+	<div id="photo-btn" class="photo-area" ng-class="{ 'has-photo': data.picture }">
+		<h3 ng-hide="data.picture">Take a picture</h3>
 	</div>
-	<!-- <div class="photo-area" id="preview" ng-show="$scope.data.picture"></div> -->
+	<div class="photo-area" id="preview" ng-show="data.picture">
+		<img id="uploaded_image" src="{{data.picture}}" alt="uploaded image" />
+	</div>
 
 	<div class="row">
 		<input type="file" label="Take Picture" capture="camera" accept="img/*" id="cameraInput" ng-model="data.picture" name="cameraInput">

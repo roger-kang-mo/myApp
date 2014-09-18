@@ -88,6 +88,25 @@ angular.module('starter', ['ionic'])
     });
 
     // $scope.rotatePics();
+
+    readURL = function(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          // $('#uploaded_image').attr('src', e.target.result);
+          // $scope.data.picture = e.target.result;
+          $scope.data.picture = "img/zak.png";
+          $scope.$apply();
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    jQuery('body').on('change', "#cameraInput", function(){
+      readURL(this);
+    });
   }
 
   $scope.rotatePics = function(){
@@ -139,7 +158,8 @@ angular.module('starter', ['ionic'])
     $scope.data = {
       name: '',
       rating: 0,
-      comment: ''
+      comment: '',
+      picture: ''
     }
   }
 
@@ -230,23 +250,6 @@ angular.module('starter', ['ionic'])
     var ft = new FileTransfer();
     ft.upload(myImg, encodeURI("https://example.com/posts/"), onUploadSuccess, onUploadFail, options);
   }
-
-  $scope.readURL = function(input) {
-      if (input.files && input.files[0]) {
-          var reader = new FileReader();
-
-          reader.onload = function (e) {
-              $('#uploaded_image').attr('src', e.target.result);
-          }
-
-          reader.readAsDataURL(input.files[0]);
-      }
-  }
-
-  $("#cameraInput").change(function(){
-      readURL(this);
-  });
-
 
   // $scope.changePicture = function(event) {
   //   event.preventDefault();
