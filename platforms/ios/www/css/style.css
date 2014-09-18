@@ -27,23 +27,20 @@ input[type="file"] {
   margin-top: 35px;
 }
 
+div.picture-wrapper {
+  width:32.9%;
+  height:34.2%;
+  margin-top:-44.7%;
+}
+
 .comment-wrapper {
   position: absolute;
   background-color: #333;
   opacity: 0.9;
   overflow:hidden;
   z-index: 1000;
-  width:322px;
-  height: 431px;
-  margin-top: -437px;
   border: 1px solid #f9f9f9;
   line-height: 129%;
-}
-
-#button_wrapper {
-  margin-top: -140px;
-  font-weight: bold;
-  z-index: 1005;
 }
 
 .hiding-wrapper {
@@ -51,11 +48,14 @@ input[type="file"] {
   position: absolute;
   background-color: #333;
   overflow:hidden;
-  width:322px;
-  height: 431px;
   opacity: .9;
-  margin-top: -437px;
-  z-index: 99999;
+  z-index: 1004;
+}
+
+#button_wrapper {
+  margin-top: -140px;
+  font-weight: bold;
+  z-index: 1005;
 }
 
 .comment {
@@ -160,11 +160,18 @@ h3{
 
 }
 
-#photo-btn{
+.photo-area {
   height:346px;
   width:386px;
   margin:  auto auto;
   display:block;
+}
+
+#photo-btn {
+  /*height:346px;
+  width:386px;
+  margin:  auto auto;
+  display:block;*/
   background-color: #D8D8D8;
   border-radius: 7px;
   border: solid 1px #979797;
@@ -262,12 +269,12 @@ button {
    position: absolute;
 }
 
-/*
+
 .highlight {
   color: #349F8D !important;
   content: "\2605" !important;
-  position: absolute !important;
-}*/
+  /*position: absolute !important;*/
+}
 
 div#picture_container .row + .row {
   margin-top: -10px;

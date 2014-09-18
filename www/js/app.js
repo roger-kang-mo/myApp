@@ -87,7 +87,7 @@ angular.module('starter', ['ionic'])
       $('#cameraInput').click();
     });
 
-    $scope.rotatePics();
+    // $scope.rotatePics();
   }
 
   $scope.rotatePics = function(){
@@ -146,9 +146,9 @@ angular.module('starter', ['ionic'])
   $scope.showModal = function(){
     $scope.modal.show();
     // COMMENT FOR DEV
-    if (navigator.getUserMedia && !$scope.hasPermission) {
-        navigator.getUserMedia({video: true}, $scope.initCamera, function(){console.log("ohshit2");});
-    }
+    // if (navigator.getUserMedia && !$scope.hasPermission) {
+    //     navigator.getUserMedia({video: true}, $scope.initCamera, function(){console.log("ohshit2");});
+    // }
   }
   $scope.closeModal = function(){
     $scope.modal.hide();
@@ -158,8 +158,6 @@ angular.module('starter', ['ionic'])
     $scope.closeModal();
     $scope.pics.push({ name: $scope.data.name, url: "img/zak.png", comment: $scope.data.comment });
     $scope.picAdded = true;
-    // $scope.showing[4] = $scope.pics[$scope.pics.length];
-    // $scope.rotatePic($scope.pics.length - 1);
     $scope.resetData();
   }
 
@@ -202,6 +200,53 @@ angular.module('starter', ['ionic'])
       }, errBack);
     }
   }
+
+  $scope.takePic = function() {
+    var options =   {
+        quality: 50,
+        destinationType: Camera.DestinationType.FILE_URI,
+        sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Photo Album
+        encodingType: 0     // 0=JPG 1=PNG
+    }
+    navigator.camera.getPicture(onSuccess,onFail,options);
+  }
+  var onSuccess = function(FILE_URI) {
+    console.log(FILE_URI);
+    $scope.picData = FILE_URI;
+    $scope.$apply();
+  };
+  var onFail = function(e) {
+    console.log("On fail " + e);
+  }
+  $scope.send = function() {   
+    var myImg = $scope.picData;
+    var options = new FileUploadOptions();
+    options.fileKey="post";
+    options.chunkedMode = false;
+    var params = {};
+    params.user_token = localStorage.getItem('auth_token');
+    params.user_email = localStorage.getItem('email');
+    options.params = params;
+    var ft = new FileTransfer();
+    ft.upload(myImg, encodeURI("https://example.com/posts/"), onUploadSuccess, onUploadFail, options);
+  }
+
+  $scope.readURL = function(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#uploaded_image').attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+
+  $("#cameraInput").change(function(){
+      readURL(this);
+  });
+
 
   // $scope.changePicture = function(event) {
   //   event.preventDefault();

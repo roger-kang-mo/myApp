@@ -3,23 +3,23 @@
 
 <div id="modal-container">
 
-	<div id="photo-btn">
+	<div id="photo-btn" class="photo-area">
 		<h3>Take a picture</h3>
 	</div>
+	<!-- <div class="photo-area" id="preview" ng-show="$scope.data.picture"></div> -->
 
 	<div class="row">
-		<input type="file" label="Take Picture" capture="camera" accept="img/*" id="cameraInput" name="cameraInput">
+		<input type="file" label="Take Picture" capture="camera" accept="img/*" id="cameraInput" ng-model="data.picture" name="cameraInput">
 	</div>
 
 	<h2 id="rating_header">Rate your visit</h2>
 
 	<div class="rating row">
-		<span class="star" ng-hide="starRated(4)" data-value=5>★</span>
-		<span class="star highlight" ng-show="starRated(4)" data-value=5>★</span>
-		<span class="star" data-value=4>★</span>
-		<span class="star" data-value=3>★</span>
-		<span class="star" data-value=2>★</span>
-		<span class="star" data-value=1>★</span>
+		<span class="star" ng-class="{ 'highlight': data.rating >= 5 }" data-value=5>★</span>
+		<span class="star" ng-class="{ 'highlight': data.rating >= 4 }" data-value=4>★</span>
+		<span class="star" ng-class="{ 'highlight': data.rating >= 3 }" data-value=3>★</span>
+		<span class="star" ng-class="{ 'highlight': data.rating >= 2 }" data-value=2>★</span>
+		<span class="star" ng-class="{ 'highlight': data.rating >= 1 }" data-value=1>★</span>
 	</div>
 
 	<div class="row">

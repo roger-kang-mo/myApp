@@ -87,7 +87,7 @@ angular.module('starter', ['ionic'])
       $('#cameraInput').click();
     });
 
-    $scope.rotatePics();
+    // $scope.rotatePics();
   }
 
   $scope.rotatePics = function(){
@@ -135,6 +135,41 @@ angular.module('starter', ['ionic'])
     }
   }
 
+  $scope.resetData = function(){
+    $scope.data = {
+      name: '',
+      rating: 0,
+      comment: ''
+    }
+  }
+
+  $scope.showModal = function(){
+    $scope.modal.show();
+    // COMMENT FOR DEV
+    // if (navigator.getUserMedia && !$scope.hasPermission) {
+    //     navigator.getUserMedia({video: true}, $scope.initCamera, function(){console.log("ohshit2");});
+    // }
+  }
+  $scope.closeModal = function(){
+    $scope.modal.hide();
+  }
+
+  $scope.submitPic = function(){
+    $scope.closeModal();
+    $scope.pics.push({ name: $scope.data.name, url: "img/zak.png", comment: $scope.data.comment });
+    $scope.picAdded = true;
+    $scope.resetData();
+  }
+
+  $scope.setRating = function(rating){
+    $scope.data.rating = rating;
+    $scope.$apply();
+  }
+
+  $scope.starRated = function(num) {
+    return $scope.data.rating >= num;
+  }
+
   $scope.initCamera = function(){
     console.log("Cam's ready");
     // Grab elements, create settings, etc.
@@ -166,40 +201,34 @@ angular.module('starter', ['ionic'])
     }
   }
 
-  $scope.resetData = function(){
-    $scope.data = {
-      name: '',
-      rating: 0,
-      comment: ''
+  $scope.takePic = function() {
+    var options =   {
+        quality: 50,
+        destinationType: Camera.DestinationType.FILE_URI,
+        sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Photo Album
+        encodingType: 0     // 0=JPG 1=PNG
     }
+    navigator.camera.getPicture(onSuccess,onFail,options);
   }
-
-  $scope.showModal = function(){
-    $scope.modal.show();
-    // COMMENT FOR DEV
-    if (navigator.getUserMedia && !$scope.hasPermission) {
-        navigator.getUserMedia({video: true}, $scope.initCamera, function(){console.log("ohshit2");});
-    }
+  var onSuccess = function(FILE_URI) {
+    console.log(FILE_URI);
+    $scope.picData = FILE_URI;
+    $scope.$apply();
+  };
+  var onFail = function(e) {
+    console.log("On fail " + e);
   }
-  $scope.closeModal = function(){
-    $scope.modal.hide();
-  }
-
-  $scope.submitPic = function(){
-    $scope.closeModal();
-    $scope.pics.push({ name: $scope.data.name, url: "img/zak.png", comment: $scope.data.comment });
-    $scope.picAdded = true;
-    // $scope.showing[4] = $scope.pics[$scope.pics.length];
-    // $scope.rotatePic($scope.pics.length - 1);
-    $scope.resetData();
-  }
-
-  $scope.setRating = function(rating){
-    $scope.data.rating = rating;
-  }
-
-  $scope.starRated = function(num) {
-    return $scope.data.rating > num;
+  $scope.send = function() {   
+    var myImg = $scope.picData;
+    var options = new FileUploadOptions();
+    options.fileKey="post";
+    options.chunkedMode = false;
+    var params = {};
+    params.user_token = localStorage.getItem('auth_token');
+    params.user_email = localStorage.getItem('email');
+    options.params = params;
+    var ft = new FileTransfer();
+    ft.upload(myImg, encodeURI("https://example.com/posts/"), onUploadSuccess, onUploadFail, options);
   }
 
   // $scope.changePicture = function(event) {
